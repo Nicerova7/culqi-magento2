@@ -1,2 +1,3 @@
-# culqi-magento2
+# Culqi-magento2
+
 Magento 2 Plugin.
