@@ -21,7 +21,7 @@
                     <label>Llave Publica</label>
                 </field>
                 <field id="llave_secreta" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="0">
-                    <label>Llave Publica</label>
+                    <label>Llave Secreta</label>
                 </field>
                 <!-- separator -->
 
