@@ -3,9 +3,9 @@
     <system>
         <section id="payment">
 
-            <group id="culqi_pago" translate="label" type="text" sortOrder="1000" showInDefault="1" showInWebsite="1" showInStore="0">
+            <group id="culqi" translate="label" type="text" sortOrder="1000" showInDefault="1" showInWebsite="1" showInStore="0">
 
-                <label>Culqi pago</label>
+                <label>Culqi</label>
                 <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Título</label>
                 </field>
@@ -24,11 +24,11 @@
                     <label>Llave Publica</label>
                 </field>
                 <!-- separator -->
-                <field id="label_multipayment" translate="label" type="myseparator" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="0">
-                </field>
+
                 <!-- /separator -->
                 <field id="active_multipayment" translate="label" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Habilitar multipagos (pagos con tarjetas + PagoEfectivo)</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="duracion_maxima" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Tiempo de duración máxima de las órdenes</label>
