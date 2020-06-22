@@ -6,6 +6,11 @@
             <group id="culqi" translate="label" type="text" sortOrder="1000" showInDefault="1" showInWebsite="1" showInStore="0">
 
                 <label>Culqi</label>
+
+                <field id="info_block" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <frontend_model>Culqi\Pago\Block\Adminhtml\Form\Field\Info</frontend_model>
+                </field>
+
                 <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Título</label>
                 </field>
@@ -24,7 +29,9 @@
                     <label>Llave Secreta</label>
                 </field>
                 <!-- separator -->
-
+                <field id="label_multipayment" translate="label" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <frontend_model>Culqi\Pago\Block\Adminhtml\Form\Field\Separator</frontend_model>
+                </field>
                 <!-- /separator -->
                 <field id="active_multipayment" translate="label" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Habilitar multipagos (pagos con tarjetas + PagoEfectivo)</label>
