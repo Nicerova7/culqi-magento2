@@ -11,7 +11,7 @@ define(
         rendererList.push(
             {
                 type: 'culqi',
-                component: 'Culqi_Pago/js/view/payment/method-renderer/prueba-method'
+                component: 'Culqi_Pago/js/view/payment/method-renderer/culqi-method'
             }
         );
         return Component.extend({});
