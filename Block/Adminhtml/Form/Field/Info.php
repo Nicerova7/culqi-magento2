@@ -22,12 +22,9 @@ class Info
 
         $html = '<div class="section-config with-button""> 
                     <div class="config-heading">
-                        <div class="heading" style="background-color:#eee;padding:1em;border:1px solid #ddd;">
                             <strong>
-                                Culqi<a class="link-more" href="https://www.culqi.com/docs" target="_blank"> Leer más</a>
+                                <a class="link-more" href="https://www.culqi.com/docs" target="_blank"> Documentación Culqi </a>
                             </strong>
-                            <span class="heading-intro"> Con Culqi comienza a aceptar pagos con tarjeta de crédito/debito y también PagoEfectivo (<b>¡Nuevo!</b>).</span>
-                        </div>
                     </div>
                  </div>';
         return $html;
