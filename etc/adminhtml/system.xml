@@ -2,11 +2,11 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
         <section id="payment">
-
-            <group id="culqi" translate="label" type="text" sortOrder="1000" showInDefault="1" showInWebsite="1" showInStore="0">
-
+            <group id="culqi" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
                 <label>Culqi</label>
-
+                <comment> <![CDATA[Con Culqi comienza a aceptar pagos con tarjeta de crédito/debito y también <br/> PagoEfectivo.]]> </comment>
+                <fieldset_css>culqi-other-section</fieldset_css>
+                <frontend_model>Culqi\Pago\Block\Adminhtml\System\Config\Fieldset\CulqiPayment</frontend_model>
                 <field id="info_block" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <frontend_model>Culqi\Pago\Block\Adminhtml\Form\Field\Info</frontend_model>
                 </field>
@@ -46,9 +46,7 @@
                 <field id="url_webhook" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>URL de Webhook</label>
                 </field>
-
             </group>
-
         </section>
     </system>
 </config> 
