@@ -58,7 +58,7 @@ $ php bin/magento setup:upgrade
 Paso 4: Correr el comando cache:flush
 $ php bin/magento cache:flush
 ```
-> Ten cuidado con los permisos de las carpetas y archivos en magento 2 ! 
+> Ten cuidado con los permisos de las carpetas y archivos en Magento 2 ! 
 `<link>` : <https://devdocs.magento.com/guides/v2.4/install-gde/prereq/file-system-perms.html/> 
 
 #### 4. Configurar el Método de pago de Culqi en tu administrador de Magento 2.3
