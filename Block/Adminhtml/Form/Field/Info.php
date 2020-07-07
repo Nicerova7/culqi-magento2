@@ -6,20 +6,12 @@ class Info
     extends \Magento\Backend\Block\AbstractBlock
     implements \Magento\Framework\Data\Form\Element\Renderer\RendererInterface
 {
-    public function __construct(
-        
-        \Magento\Framework\Filesystem\DirectoryList $dir
-              
-    ) {
-        
-        $this->_dir = $dir;
-        
+    public function __construct(\Magento\Framework\Filesystem\DirectoryList $dir) {   
+        $this->_dir = $dir; 
     }
     
     public function render(\Magento\Framework\Data\Form\Element\AbstractElement $element)
     {
-       
-
         $html = '<div class="section-config with-button""> 
                     <div class="config-heading">
                             <strong>
