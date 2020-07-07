@@ -5,12 +5,7 @@ namespace Culqi\Pago\Model\Payment;
 
 class Pago extends \Magento\Payment\Model\Method\AbstractMethod
 {
-
-    protected $_code = "culqi";
-
-    public function isAvailable(
-        \Magento\Quote\Api\Data\CartInterface $quote = null
-    ) {
-        return parent::isAvailable($quote);
-    }
+    const CODE = 'culqi';
+    protected $_isInitializeNeeded = true;
+    protected $_code = self::CODE;
 }
