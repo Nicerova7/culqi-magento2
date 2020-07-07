@@ -23,9 +23,7 @@ class Event extends \Magento\Framework\App\Action\Action implements CsrfAwareAct
     ) {
         $this->logger = $logger;
         $this->order = $order;
-
         parent::__construct($context);
-
     }
 
     public function createCsrfValidationException(RequestInterface $request): ? InvalidRequestException
@@ -46,22 +44,22 @@ class Event extends \Magento\Framework\App\Action\Action implements CsrfAwareAct
 
         $this->logger->debug("Mensaje de webhook recibido");
 
-        if($input->object == 'event' && $input->type == 'order.status.changed') {              
+        if ($input->object == 'event' && $input->type == 'order.status.changed') {              
             $mgtOrderId = $data->metadata->mgt_order_id;  
 
             $this->logger->debug('Evento de Culqi, cambio de orden identificado. Orden: '.$mgtOrderId);
            
             $orderToSet = $this->order->loadByIncrementId($mgtOrderId);  
 
-            if($orderToSet && $orderToSet->getStatus() != $this->statusProcessing) {             
-                 if($data->state == 'paid') {
+            if ($orderToSet && $orderToSet->getStatus() != $this->statusProcessing) {             
+                 if ($data->state == 'paid') {
                      $this->logger->debug('Orden Pagada');
                      $orderToSet->setState($this->statusProcessing)->setStatus($this->statusProcessing);  
                      $orderToSet->addStatusToHistory($orderToSet->getStatus(), "Venta completada. El pago se realizó con éxito.");
                      $orderToSet->save();
                  } 
 
-                 if($data->state == 'expired') {
+                 if ($data->state == 'expired') {
                      $this->logger->debug('Orden Experiada');
                      $orderToSet->setState($this->statusCanceled)->setStatus($this->statusCanceled);  
                      $orderToSet->addStatusToHistory($orderToSet->getStatus(), "Venta expirada, el pago no se completó");
