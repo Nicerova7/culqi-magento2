@@ -1,7 +1,8 @@
 <?php
 /**
  * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * See COPYING.txt in https://github.com/magento/magento2/blob/2.4-develop/COPYING.txt
+ * for license details.
  */
 namespace Culqi\Pago\Block\Adminhtml\System\Config\Fieldset;
 
