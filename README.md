@@ -71,11 +71,11 @@ $ php bin/magento cache:flush
 
 ![Imgur](https://i.imgur.com/zQ6N4HY.png)
 
-##### 4.3 Paymen methods
+##### 4.3 Payment methods
 
 ![Imgur](https://i.imgur.com/axDBf3r.png)
 
-##### 4.4 Nos dirigamos al último 
+##### 4.4 Nos dirigimos al último 
 
 ![Imgur](https://i.imgur.com/bmFrxPs.png)
 
@@ -91,25 +91,25 @@ $ php bin/magento cache:flush
 
 Tip para definir el nombre de tu tienda en el checkout de Culqi.
 
-##### 1. Nos dirigamos al panel de administración de Magento
+##### 1. Nos dirigimos al panel de administración de Magento
 
-###### 1.1 Ubicamos la sección All Stores
+###### 1.1 Ubicamos la sección All Stores.
 
 ![Imgur](https://i.imgur.com/1mviyes.png)
 
 
-###### 1.2 Seleccionamos Magento Commerce en la Seccion Web Store
+###### 1.2 Seleccionamos Magento Commerce en la Seccion Web Store.
 
 ![Imgur](https://i.imgur.com/NsyzdDW.png)
 
-###### 1.3 Configuramos el nombre deseado
+###### 1.3 Configuramos el nombre deseado.
 
 ![Imgur](https://i.imgur.com/tCVGnYj.png)
 
 
 ### Webhook
 
-Puedes activar un Webhook desde el panel de integración de Culqi para mantener el status de una orden cancelada por pagoefectivo.
+Puedes activar un Webhook desde el panel de integración de Culqi para mantener el status de una orden pagada por pagoefectivo.
 
 ```Markdown 
 Paso 1: Ir al panel de integración de culqi, en la sección Eventos y luego a Webhooks.
