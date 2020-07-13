@@ -2,9 +2,7 @@
 
 namespace Culqi\Pago\Block\Adminhtml\Form\Field;
 
-class Separator 
-    extends \Magento\Backend\Block\AbstractBlock
-    implements \Magento\Framework\Data\Form\Element\Renderer\RendererInterface
+class Separator extends \Magento\Backend\Block\AbstractBlock implements \Magento\Framework\Data\Form\Element\Renderer\RendererInterface
 {
     
     public function render(\Magento\Framework\Data\Form\Element\AbstractElement $element)
@@ -17,7 +15,7 @@ class Separator
                             </div>
                             </h4>   
                         </td>
-                 </tr>'; 
+                 </tr>';
         return $html;
     }
 }
