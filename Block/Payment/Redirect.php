@@ -16,14 +16,13 @@ class Redirect extends \Magento\Framework\View\Element\Template
 
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
-        array $data = [],
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        \Magento\Store\Model\StoreManagerInterface $storeManager
-        
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        array $data = []
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->storeManager = $storeManager;
-        parent::__construct($context, $data);     
+        parent::__construct($context, $data);
     }
 
     public function getLlavePublica()
@@ -55,7 +54,7 @@ class Redirect extends \Magento\Framework\View\Element\Template
         return $this->scopeConfig->getvalue(
             'payment/culqi/order_preffix',
             \Magento\Store\model\ScopeInterface::SCOPE_STORE
-        );    
+        );
     }
 
     public function getStoreName()
