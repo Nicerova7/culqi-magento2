@@ -127,6 +127,7 @@ class Gateway extends \Magento\Framework\App\Action\Action implements CsrfAwareA
 
             //Return sesion
             //Cancel order
+            $orderToSet->setState($this->statusCanceled)->setStatus($this->statusCanceled);
             $orderToSet->addStatusToHistory($orderToSet->getStatus(), "Cancelado por el usuario.");
             $orderToSet->save();
 
