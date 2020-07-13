@@ -42,10 +42,6 @@ Tu número de orden: <?php echo $orderId; ?> <br> <br>
 
         <script type="text/javascript">
 
-            $('#btn_cancelar').on('click', function(e) {
-              post("<?php echo $block->getUrl('pago/payment/gateway'); ?>", jsonResponse('cancelado_por_usuario'));
-            });
-
             Culqi.publicKey  = '<?= $llavePublica ?>';
 
             Culqi.settings({
@@ -62,8 +58,15 @@ Tu número de orden: <?php echo $orderId; ?> <br> <br>
                 ?>
 
             });
+
+            var $jq = jQuery.noConflict();
+
+            $jq('#btn_cancelar').on('click', function(e) {
+              post("<?php echo $block->getUrl('pago/payment/gateway'); ?>", jsonResponse('cancelado_por_usuario'));
+            });
+
             // Activa el botón de pago
-            $('#btn_pago').on('click', function(e) {
+            $jq('#btn_pago').on('click', function(e) {
               Culqi.open();
               e.preventDefault();
             });
