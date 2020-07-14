@@ -73,8 +73,7 @@ class Culqi extends \Magento\Payment\Model\Method\AbstractMethod
         $client->setOptions(['timeout' => 120]);
         $client->setHeaders([
             'Authorization' => "Bearer ".$this->_private_key,
-            'Content-Type' => "application/json",
-            ]
+            'Content-Type' => "application/json"]
         );
         $client->setRawBody(Json::encode($data));
         $client->setMethod('POST');
@@ -124,8 +123,7 @@ class Culqi extends \Magento\Payment\Model\Method\AbstractMethod
         $client->setOptions(['timeout' => 120]);
         $client->setHeaders([
             'Authorization' => "Bearer ".$this->_private_key,
-            'Content-Type' => "application/json",
-            ]
+            'Content-Type' => "application/json"]
         );
         $client->setRawBody(Json::encode($data));
         $client->setMethod('POST');
