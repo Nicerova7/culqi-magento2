@@ -2,7 +2,7 @@
 
 namespace Culqi\Pago\Controller\Payment;
 
-use Magento\Framework\Controller\ResultFactory; 
+use Magento\Framework\Controller\ResultFactory;
 
 use Magento\Framework\App\CsrfAwareActionInterface;
 use Magento\Framework\App\RequestInterface;
@@ -51,10 +51,10 @@ class Gateway extends \Magento\Framework\App\Action\Action implements CsrfAwareA
     public function validateForCsrf(RequestInterface $request): ?bool
     {
         return true;
-    }    
+    }
     
     public function execute()
-    {   
+    {
         $result = $this->responseAction();
         return $result;
     }
@@ -68,24 +68,27 @@ class Gateway extends \Magento\Framework\App\Action\Action implements CsrfAwareA
  
             $orderToSet = $this->order->loadByIncrementId($orderId);
             $orderToSet->setState($this->statusProcessing)->setStatus($this->statusProcessing);
-            $orderToSet->addStatusToHistory($orderToSet->getStatus(), "Venta correcta vía Tarjeta de Crédito (Culqi), espera a su entrega y confirmación.");
+            $orderToSet->addStatusToHistory(
+                $orderToSet->getStatus(),
+                "Venta correcta vía Tarjeta de Crédito (Culqi), espera a su entrega y confirmación."
+            );
             $orderToSet->save();
 
             $resultRedirect = $this->resultRedirect->create(ResultFactory::TYPE_REDIRECT);
             $this->_checkoutSession->setSuccess(true);
             $resultRedirect->setUrl($this->url->getUrl('pago/payment/success'));
 
-            return $resultRedirect; 
-        }
-
-        elseif ($this->getRequest()->get("orderId") && $this->getRequest()->get("statusOrder") == 'fail') {
-
+            return $resultRedirect;
+        } elseif ($this->getRequest()->get("orderId") && $this->getRequest()->get("statusOrder") == 'fail') {
             $orderId = $this->getRequest()->get("orderId");
 
             if ($orderId) {
                 $orderToSet = $this->order->loadByIncrementId($orderId);
                 $orderToSet->setState($this->statusCanceled)->setStatus($this->statusCanceled);
-                $orderToSet->addStatusToHistory($orderToSet->getStatus(), "La orden no fue completada por problemas en el pago.");
+                $orderToSet->addStatusToHistory(
+                    $orderToSet->getStatus(), 
+                    "La orden no fue completada por problemas en el pago."
+                );
                 $orderToSet->save();
             }
 
@@ -93,32 +96,31 @@ class Gateway extends \Magento\Framework\App\Action\Action implements CsrfAwareA
             //Return quote
             $quote = $this->quoteFactory->create()->load($orderToSet->getQuoteId());
             if ($quote && $quote->getId()) {
-                $quote->setIsActive(true)->setReservedOrderId(NULL)->save();
+                $quote->setIsActive(true)->setReservedOrderId(null)->save();
                 $this->_checkoutSession->replaceQuote($quote);
             }
             $resultRedirect = $this->resultRedirect->create(ResultFactory::TYPE_REDIRECT);
             $resultRedirect->setUrl($this->url->getUrl('checkout/cart/'));
-            return $resultRedirect; 
-        } 
-
-        elseif ($this->getRequest()->get("orderId") && $this->getRequest()->get("statusOrder") == 'pending_payment') {
-
+            return $resultRedirect;
+        } elseif ($this->getRequest()->get("orderId") && $this->getRequest()->get("statusOrder") == 'pending_payment') {
             $orderId = $this->getRequest()->get("orderId");
             
             $orderToSet = $this->order->loadByIncrementId($orderId);
             $orderToSet->setState($this->statusHolded)->setStatus($this->statusHolded);
-            $orderToSet->addStatusToHistory($orderToSet->getStatus(), "Orden en espera de pago por medio de PagoEfectivo.");
+            $orderToSet->addStatusToHistory(
+                $orderToSet->getStatus(), 
+                "Orden en espera de pago por medio de PagoEfectivo."
+            );
             $orderToSet->save();
     
             $resultRedirect = $this->resultRedirect->create(ResultFactory::TYPE_REDIRECT);
             $this->_checkoutSession->setSuccess(true);
             $resultRedirect->setUrl($this->url->getUrl('pago/payment/success'));
 
-            return $resultRedirect; 
-        }
-        
-        elseif ($this->getRequest()->get("orderId") && $this->getRequest()->get("statusOrder") == 'cancelado_por_usuario') {
-
+            return $resultRedirect;
+        } elseif ($this->getRequest()->get("orderId") &&
+            $this->getRequest()->get("statusOrder") == 'cancelado_por_usuario') {
+                
             $orderId = $this->getRequest()->get("orderId");
 
             if ($orderId) {
@@ -134,15 +136,13 @@ class Gateway extends \Magento\Framework\App\Action\Action implements CsrfAwareA
             //Return quote
             $quote = $this->quoteFactory->create()->load($orderToSet->getQuoteId());
             if ($quote && $quote->getId()) {
-                $quote->setIsActive(true)->setReservedOrderId(NULL)->save();
+                $quote->setIsActive(true)->setReservedOrderId(null)->save();
                 $this->_checkoutSession->replaceQuote($quote);
             }
             $resultRedirect = $this->resultRedirect->create(ResultFactory::TYPE_REDIRECT);
             $resultRedirect->setUrl($this->url->getUrl('checkout/cart/'));
-            return $resultRedirect; 
-        } 
-
-        else {
+            return $resultRedirect;
+        } else {
             $resultRedirect = $this->resultRedirect->create(ResultFactory::TYPE_REDIRECT);
             $resultRedirect->setUrl($this->url->getUrl('checkout/onepage/failure'));
             return $resultRedirect;
