@@ -63,16 +63,19 @@ class Check extends \Magento\Framework\App\Action\Action implements CsrfAwareAct
         foreach ($items as $item) {
             $productNames[]= $item->getName();
         }
-    
-        $description = $productNames[0];
+        $orderId = $orders->getRealOrderId();
+        
+        if (count($productNames)>1) {
+            $description = $orderId;
+        } else {
+            $description = $productNames[0];
+        }
 
         $storeName = $orders->getStoreName();
 
         $firstName = $orders->getCustomerFirstname();
         $lastName = $orders->getCustomerLastname();
         $email = $orders->getCustomerEmail();
-
-        $orderId = $orders->getRealOrderId();
 
         $billingaddress = $orders->getBillingAddress();
         $addressCity = $billingaddress->getCity();
