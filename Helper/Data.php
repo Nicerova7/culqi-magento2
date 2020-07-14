@@ -7,11 +7,11 @@ use Magento\Store\Model\ScopeInterface;
 
 class Data extends AbstractHelper
 {
-    function getConfig($config_path)
+    public function getConfig($config_path)
     {
         return $this->scopeConfig->getValue(
             $config_path,
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-            );
+        );
     }
 }
