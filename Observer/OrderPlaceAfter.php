@@ -45,8 +45,8 @@ class OrderPlaceAfter implements ObserverInterface
            
             $items =$orders->getAllItems();
             //product Names
-            $productNames = array();
-            foreach($items as $item) {
+            $productNames = [];
+            foreach ($items as $item) {
                 $productNames[]= $item->getName();
             }
             
@@ -69,7 +69,7 @@ class OrderPlaceAfter implements ObserverInterface
             $billingaddress=$orders->getBillingAddress();
             $billingcity=$billingaddress->getCity();
             $billingstreet=$billingaddress->getStreet();
-            $billingtelephone=$billingaddress->getTelephone();     
+            $billingtelephone=$billingaddress->getTelephone();
 
             $activeMultiPay = $this->helper->getConfig('payment/culqi/active_multipayment');
 
