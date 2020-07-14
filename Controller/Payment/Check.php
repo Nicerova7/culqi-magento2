@@ -14,7 +14,7 @@ class Check extends \Magento\Framework\App\Action\Action implements CsrfAwareAct
     protected $request;
     protected $culqiopera;
     protected $order;
-    protected  $logger;
+    protected $logger;
 
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
@@ -40,10 +40,10 @@ class Check extends \Magento\Framework\App\Action\Action implements CsrfAwareAct
     public function validateForCsrf(RequestInterface $request): ?bool
     {
         return true;
-    }    
+    }
 
     public function execute()
-    {    
+    {
         // Reception of Post parameters
         $source_id = $this->getRequest()->getPost('token_id');
         $orderId = $this->getRequest()->getPost('order_id');
@@ -59,10 +59,10 @@ class Check extends \Magento\Framework\App\Action\Action implements CsrfAwareAct
 
         $items =$orders->getAllItems();
         // product Names
-        $productNames = array();
-        foreach($items as $item) {
+        $productNames = [];
+        foreach ($items as $item) {
             $productNames[]= $item->getName();
-        }        
+        }
     
         $description = $productNames[0];
 
@@ -92,22 +92,22 @@ class Check extends \Magento\Framework\App\Action\Action implements CsrfAwareAct
         // Culqi functions
         // Create Cargo
         $cargo = $this->culqiopera->crearCargo(
-          $amount,
-          $address,
-          $addressCity,
-          $countryCode,
-          $firstName,
-          $lastName,
-          $phoneNumber,
-          $currencyCode,
-          $description,
-          $installments,
-          $email,
-          $source_id,
-          $orderId
+            $amount,
+            $address,
+            $addressCity,
+            $countryCode,
+            $firstName,
+            $lastName,
+            $phoneNumber,
+            $currencyCode,
+            $description,
+            $installments,
+            $email,
+            $source_id,
+            $orderId
         );
 
         $this->logger->debug("Cargo response ==> ".$cargo);
         $this->getResponse()->setBody(Json::encode($cargo));
-    } 
+    }
 }
