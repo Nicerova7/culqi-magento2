@@ -1,6 +1,7 @@
 <?php
 
 namespace Culqi\Pago\Model\Payment;
+
 use Zend\Http\Client;
 use Zend\Http\Request;
 use Zend\Json\Json;
@@ -31,7 +32,7 @@ class Culqi extends \Magento\Payment\Model\Method\AbstractMethod
         $phoneNumber,
         $email,
         $orderId
-    ) {   
+    ) {
         $result = $this->resultJsonFactory->create();
 
         $prefixOrder = 'MGT';
@@ -39,9 +40,9 @@ class Culqi extends \Magento\Payment\Model\Method\AbstractMethod
 
         $hoursExpiration = $this->storeConfig->getDuracionMaxima();
 
-        if (!empty($actualPrefix)) { 
-          $prefixOrder = $actualPrefix;
-        } 
+        if (!empty($actualPrefix)) {
+            $prefixOrder = $actualPrefix;
+        }
 
         $listOfCharacters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         $randomString = str_shuffle($listOfCharacters);
@@ -49,38 +50,36 @@ class Culqi extends \Magento\Payment\Model\Method\AbstractMethod
 
         $total = number_format($amount, 2, '', '');
 
-        $data =  array(
-            'amount' => $total, 
-            'currency_code' => $currencyCode, 
-            'description' => $description, 
-            'order_number' => $prefixOrder.'-'.$randomString,       
-            'client_details'=> array(  
+        $data =  [
+            'amount' => $total,
+            'currency_code' => $currencyCode,
+            'description' => $description,
+            'order_number' => $prefixOrder.'-'.$randomString,
+            'client_details'=> [
                     'first_name' => $firstName,
                     'last_name' => $lastName,
-                    'phone_number' => $phoneNumber, 
+                    'phone_number' => $phoneNumber,
                     'email' => $email
-            ),
+            ],
             'expiration_date' => time() + $hoursExpiration * 60 * 60,
             'confirm' => false,
-            'metadata' => array("mgt_order_id"=> $orderId)
-          ); 
+            'metadata' => ["mgt_order_id" => $orderId]
+        ];
 
-       
-          $this->_private_key = $this->storeConfig->getLlaveSecreta();
+        $this->_private_key = $this->storeConfig->getLlaveSecreta();
 
-          $client = new Client();
-          $client->setUri($this->_url_base."/orders/");
-          $client->setOptions(array('timeout' => 120));
-          $client->setHeaders(
-                  array(
-                      'Authorization' => "Bearer ".$this->_private_key,
-                      'Content-Type' => "application/json",
-                  )
-              );
-          $client->setRawBody(Json::encode($data));
-          $client->setMethod('POST');
-          $json = $client->send()->getBody();
-          return $json;
+        $client = new Client();
+        $client->setUri($this->_url_base."/orders/");
+        $client->setOptions(['timeout' => 120]);
+        $client->setHeaders([
+            'Authorization' => "Bearer ".$this->_private_key,
+            'Content-Type' => "application/json",
+            ]
+        );
+        $client->setRawBody(Json::encode($data));
+        $client->setMethod('POST');
+        $json = $client->send()->getBody();
+        return $json;
     }
 
     public function crearCargo(
@@ -98,39 +97,39 @@ class Culqi extends \Magento\Payment\Model\Method\AbstractMethod
         $source_id,
         $orderId
     ) {
-        $data =  array(
+
+        $data =  [
             'amount' => $amount,
-            'antifraud_details'=> array(
+            'antifraud_details'=> [
             'address' => $address,
             'address_city' => $addressCity,
             'country_code' => $countryCode,
             'first_name' => $firstName,
             'last_name' => $lastName,
             'phone_number' => $phoneNumber
-            ),
+            ],
             'capture' => true,
             'currency_code' => $currencyCode,
             'description' => $description,
             'installments' => $installments,
-            'metadata' => array("order_id" => (string) $orderId),
+            'metadata' => ["order_id" => (string) $orderId],
             'email' => $email,
             'source_id' => $source_id
-            );
+        ];
 
         $this->_private_key = $this->storeConfig->getLlaveSecreta();
 
         $client = new Client();
         $client->setUri($this->_url_base."/charges/");
-        $client->setOptions(array('timeout' => 120));
-        $client->setHeaders(
-              array(
-                  'Authorization' => "Bearer ".$this->_private_key,
-                  'Content-Type' => "application/json",
-              )
-          );
+        $client->setOptions(['timeout' => 120]);
+        $client->setHeaders([
+            'Authorization' => "Bearer ".$this->_private_key,
+            'Content-Type' => "application/json",
+            ]
+        );
         $client->setRawBody(Json::encode($data));
         $client->setMethod('POST');
         $json = $client->send()->getBody();
-        return $json;;
+        return $json;
     }
 }
