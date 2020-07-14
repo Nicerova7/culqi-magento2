@@ -26,7 +26,7 @@ class Success extends \Magento\Checkout\Block\Onepage\Success
     public function getOrder()
     {
         return  $this->_order = $this->_orderFactory->create()->loadByIncrementId(
-        $this->checkoutSession->getLastRealOrderId()
+            $this->checkoutSession->getLastRealOrderId()
         );
     }
 

@@ -40,7 +40,7 @@ class Redirect extends \Magento\Framework\View\Element\Template
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
     }
-    
+
     public function getDuracionMaxima()
     {
         return $this->scopeConfig->getvalue(
