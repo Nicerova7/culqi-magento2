@@ -82,13 +82,13 @@ Tu número de orden: <?php echo $orderId; ?> <br> <br>
 
               if(Culqi.error) {
                 // Mostramos JSON de objeto error en consola
-                $('#response').html(Culqi.error.merchant_message);
-                $('body').waitMe('hide');
+                $jq('#response').html(Culqi.error.merchant_message);
+                $jq('body').waitMe('hide');
               } else {
                 $(document).ajaxStart(function(){
                   run_waitMe();
                   });
-                $.ajax({  
+                $jq.ajax({  
                       url: "<?php echo $block->getUrl('pago/payment/check');?>",
                       type: "POST",
                       timeout: 30000,
@@ -126,16 +126,16 @@ Tu número de orden: <?php echo $orderId; ?> <br> <br>
 
             if(Culqi.error) {
                 // Mostramos JSON de objeto error en consola
-                $('#response').html(Culqi.error.merchant_message);
-                $('body').waitMe('hide');
+                $jq('#response').html(Culqi.error.merchant_message);
+                $jq('body').waitMe('hide');
             } else if (Culqi.token) {
                 console.log(Culqi.token.id);
 
-                $(document).ajaxStart(function(){
+                $jq(document).ajaxStart(function(){
                   run_waitMe();
                 });
 
-                $.ajax({    
+                $jq.ajax({    
                     url: "<?php echo $block->getUrl('pago/payment/check');?>",
                     type: "POST",
                     timeout: 30000,
@@ -171,7 +171,7 @@ Tu número de orden: <?php echo $orderId; ?> <br> <br>
            };
 
             function run_waitMe(){
-              $('body').waitMe({
+              $jq('body').waitMe({
                 effect: 'pulse',
                 text: 'Procesando pago...',
                 bg: 'rgba(255,255,255,0.7)',
@@ -187,8 +187,8 @@ Tu número de orden: <?php echo $orderId; ?> <br> <br>
             };
 
             function resultdiv(message){
-                $('#response').html(message);
-                $('body').waitMe('hide');
+                $jq('#response').html(message);
+                $jq('body').waitMe('hide');
             }
 
             /*
