@@ -39,8 +39,8 @@ class Event extends \Magento\Framework\App\Action\Action implements CsrfAwareAct
     public function execute()
     {
         // Recepcion del mensaje de webhook
-        $inputJSON = file_get_contents('php://input');
-        $input = json_decode($inputJSON, true);
+        $inputJSON = $this->getRequest()->getContent();
+        $input = json_decode($inputJSON);
         $data = json_decode($input->data);
 
         $this->logger->debug("Mensaje de webhook recibido");
