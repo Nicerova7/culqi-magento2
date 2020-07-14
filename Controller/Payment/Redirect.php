@@ -40,7 +40,7 @@ class Redirect extends \Magento\Framework\App\Action\Action
             'amount' => $amount,
             'currency_code' => $currencyCode,
             'description' => $description,
-            'store_name' => $storeName,    
+            'store_name' => $storeName,
             'first_name' => $firstName,
             'last_name' => $lastName,
             'phone_number' => $phoneNumber,
