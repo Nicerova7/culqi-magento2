@@ -2,7 +2,9 @@
 
 namespace Culqi\Pago\Block\Adminhtml\Form\Field;
 
-class Info extends \Magento\Backend\Block\AbstractBlock implements \Magento\Framework\Data\Form\Element\Renderer\RendererInterface
+use \Magento\Framework\Data\Form\Element\Renderer\RendererInterface as RendererInterface;
+
+class Info extends \Magento\Backend\Block\AbstractBlock implements RendererInterface
 {
     public function __construct(\Magento\Framework\Filesystem\DirectoryList $dir)
     {
