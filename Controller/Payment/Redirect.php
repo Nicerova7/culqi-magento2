@@ -4,8 +4,6 @@ namespace Culqi\Pago\Controller\Payment;
 
 class Redirect extends \Magento\Framework\App\Action\Action
 {
-
-
     protected $culqiopera;
     protected $resultPageFactory;
     protected $_checkoutSession;
@@ -38,17 +36,17 @@ class Redirect extends \Magento\Framework\App\Action\Action
         $orderId = $this->_checkoutSession->getOrderId();
         $activeMultiPay = $this->_checkoutSession->getActiveMultiPay();
 
-        $data =  array(
-            'amount' => $amount, 
-            'currency_code' => $currencyCode, 
+        $data =  [
+            'amount' => $amount,
+            'currency_code' => $currencyCode,
             'description' => $description,
-            'store_name' => $storeName,       
+            'store_name' => $storeName,    
             'first_name' => $firstName,
             'last_name' => $lastName,
-            'phone_number' => $phoneNumber, 
+            'phone_number' => $phoneNumber,
             'email' => $email,
             'orderId' => $orderId
-        );
+        ];
     
         $page = $this->resultPageFactory->create();
         $block = $page->getLayout()->getBlock('payment.redirect');
@@ -67,11 +65,11 @@ class Redirect extends \Magento\Framework\App\Action\Action
             );
             $this->logger->debug("Order response ==> ".$orderReq);
             $orderReq = json_decode($orderReq, true);
-            $block->setData('orderIdCq', $orderReq['id']);         
+            $block->setData('orderIdCq', $orderReq['id']);
         }
-        
+
         $block->setData('dataOrder', $data);
         $block->setData('activeMultiPay', $activeMultiPay);
         return $page;
-    } 
+    }
 }
