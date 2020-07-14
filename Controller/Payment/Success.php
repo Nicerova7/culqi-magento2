@@ -2,10 +2,10 @@
 
 namespace Culqi\Pago\Controller\Payment;
 
-use Magento\Framework\Controller\ResultFactory; 
+use Magento\Framework\Controller\ResultFactory;
 
 class Success extends \Magento\Framework\App\Action\Action
-{   
+{
     protected $resultPageFactory;
     protected $checkoutSession;
     protected $resultRedirect;
@@ -25,7 +25,7 @@ class Success extends \Magento\Framework\App\Action\Action
     }
 
     public function execute()
-    {   
+    {
         $page = $this->resultPageFactory->create();
         $block = $page->getLayout()->getBlock('payment.success');
 
@@ -35,7 +35,7 @@ class Success extends \Magento\Framework\App\Action\Action
         } else {
             $resultRedirect = $this->resultRedirect->create(ResultFactory::TYPE_REDIRECT);
             $resultRedirect->setUrl($this->url->getUrl('checkout/cart/'));
-            return $resultRedirect; 
-        } 
-    } 
+            return $resultRedirect;
+        }
+    }
 }
