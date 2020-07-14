@@ -45,7 +45,7 @@ class Event extends \Magento\Framework\App\Action\Action implements CsrfAwareAct
 
         $this->logger->debug("Mensaje de webhook recibido");
 
-        if ($input->object == 'event' && $input->type == 'order.status.changed') {        
+        if ($input->object == 'event' && $input->type == 'order.status.changed') {
             $mgtOrderId = $data->metadata->mgt_order_id;
 
             $this->logger->debug('Evento de Culqi, cambio de orden identificado. Orden: '.$mgtOrderId);
