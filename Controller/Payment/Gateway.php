@@ -86,7 +86,7 @@ class Gateway extends \Magento\Framework\App\Action\Action implements CsrfAwareA
                 $orderToSet = $this->order->loadByIncrementId($orderId);
                 $orderToSet->setState($this->statusCanceled)->setStatus($this->statusCanceled);
                 $orderToSet->addStatusToHistory(
-                    $orderToSet->getStatus(), 
+                    $orderToSet->getStatus(),
                     "La orden no fue completada por problemas en el pago."
                 );
                 $orderToSet->save();
@@ -102,13 +102,15 @@ class Gateway extends \Magento\Framework\App\Action\Action implements CsrfAwareA
             $resultRedirect = $this->resultRedirect->create(ResultFactory::TYPE_REDIRECT);
             $resultRedirect->setUrl($this->url->getUrl('checkout/cart/'));
             return $resultRedirect;
-        } elseif ($this->getRequest()->get("orderId") && $this->getRequest()->get("statusOrder") == 'pending_payment') {
+        } elseif ($this->getRequest()->get("orderId") &&
+            $this->getRequest()->get("statusOrder") == 'pending_payment') {
+
             $orderId = $this->getRequest()->get("orderId");
             
             $orderToSet = $this->order->loadByIncrementId($orderId);
             $orderToSet->setState($this->statusHolded)->setStatus($this->statusHolded);
             $orderToSet->addStatusToHistory(
-                $orderToSet->getStatus(), 
+                $orderToSet->getStatus(),
                 "Orden en espera de pago por medio de PagoEfectivo."
             );
             $orderToSet->save();

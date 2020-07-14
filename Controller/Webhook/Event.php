@@ -37,35 +37,42 @@ class Event extends \Magento\Framework\App\Action\Action implements CsrfAwareAct
     }
 
     public function execute()
-    {  // Recepcion del mensaje de webhook
+    {
+        // Recepcion del mensaje de webhook
         $inputJSON = file_get_contents('php://input');
-        $input = json_decode($inputJSON, true); 
+        $input = json_decode($inputJSON, true);
         $data = json_decode($input->data);
 
         $this->logger->debug("Mensaje de webhook recibido");
 
-        if ($input->object == 'event' && $input->type == 'order.status.changed') {              
-            $mgtOrderId = $data->metadata->mgt_order_id;  
+        if ($input->object == 'event' && $input->type == 'order.status.changed') {        
+            $mgtOrderId = $data->metadata->mgt_order_id;
 
             $this->logger->debug('Evento de Culqi, cambio de orden identificado. Orden: '.$mgtOrderId);
-           
-            $orderToSet = $this->order->loadByIncrementId($mgtOrderId);  
 
-            if ($orderToSet && $orderToSet->getStatus() != $this->statusProcessing) {             
-                 if ($data->state == 'paid') {
-                     $this->logger->debug('Orden Pagada');
-                     $orderToSet->setState($this->statusProcessing)->setStatus($this->statusProcessing);  
-                     $orderToSet->addStatusToHistory($orderToSet->getStatus(), "Venta completada. El pago se realizó con éxito.");
-                     $orderToSet->save();
-                 } 
+            $orderToSet = $this->order->loadByIncrementId($mgtOrderId);
 
-                 if ($data->state == 'expired') {
-                     $this->logger->debug('Orden Experiada');
-                     $orderToSet->setState($this->statusCanceled)->setStatus($this->statusCanceled);  
-                     $orderToSet->addStatusToHistory($orderToSet->getStatus(), "Venta expirada, el pago no se completó");
-                     $orderToSet->save();
-                 }      
-             }                    
+            if ($orderToSet && $orderToSet->getStatus() != $this->statusProcessing) {
+                if ($data->state == 'paid') {
+                    $this->logger->debug('Orden Pagada');
+                    $orderToSet->setState($this->statusProcessing)->setStatus($this->statusProcessing);
+                    $orderToSet->addStatusToHistory(
+                        $orderToSet->getStatus(),
+                        "Venta completada. El pago se realizó con éxito."
+                    );
+                    $orderToSet->save();
+                }
+
+                if ($data->state == 'expired') {
+                    $this->logger->debug('Orden Experiada');
+                    $orderToSet->setState($this->statusCanceled)->setStatus($this->statusCanceled);
+                    $orderToSet->addStatusToHistory(
+                        $orderToSet->getStatus(),
+                        "Venta expirada, el pago no se completó"
+                    );
+                    $orderToSet->save();
+                }
+            }
         }
-    } 
+    }
 }
