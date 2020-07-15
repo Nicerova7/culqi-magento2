@@ -16,7 +16,7 @@ donde encontrarás tus llaves `<link>` : <https://integ-panel.culqi.com/#/desarr
 `<link>` : <https://github.com/Nicerova7/culqi-magento2/releases/tag/v1.0> 
 
 ##### 2.1
-![Imgur](https://i.imgur.com/KmF6qMc.png)
+![Imgur](https://i.imgur.com/yh7Mc3b.png)
 
 
 #### 3. Instalación del Método de Pago de Culqi en tu Magento 2.3
