@@ -13,7 +13,7 @@ donde encontrarás tus llaves `<link>` : <https://integ-panel.culqi.com/#/desarr
 
 #### 2. Descargar  el Método de Pago de Culqi para Magento 2
 
-`<link>` : <https://github.com/Nicerova7/culqi-magento2/releases/tag/v1.0> 
+`<link>` : <https://github.com/Nicerova7/culqi-magento2/releases/tag/v1.0.0> 
 
 ##### 2.1
 ![Imgur](https://i.imgur.com/yh7Mc3b.png)
